@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Build Docker image
-        run: docker build --pull -t test .
+        run: docker build --pull -t test -f context/Dockerfile
       - name: Test Docker image
         run: docker run test
       - name: Inspect Docker image
