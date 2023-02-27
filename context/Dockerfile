@@ -28,3 +28,4 @@ COPY --from=galaxy /usr/share/ansible /usr/share/ansible
 COPY --from=builder /output/ /output/
 RUN /output/install-from-bindep && rm -rf /output/wheels
 RUN wget https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz -O - | tar -xz && mv linux-amd64/helm /usr/bin/helm && chmod +x /usr/bin/helm && rm -rf linux-amd64
+RUN wget https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v4.5.4/kustomize_v4.5.4_linux_amd64.tar.gz -O - | tar -xz && mv kustomize /usr/bin/kustomize && chmod +x /usr/bin/kustomize 
