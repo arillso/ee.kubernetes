@@ -1,6 +1,0 @@
-kubernetes>=12.0.0
-requests-oauthlib
-jsonpatch
-boto
-botocore
-boto3

@@ -10,32 +10,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install tox
+          pip install ansible-builder
+
+      - name: Build EE with Docker
+        env:
+          DOCKER_BUILDKIT: 1
+        run: |
+          ansible-builder build -v3 --tag=ghcr.io/arillso/kubernetes:latest --tag=arillso/kubernetes:latest --container-runtime=docker
 
       - name: Login to DockerHub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           username: sbaerlocher
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: context
-          push: true
-          tags: |
-            ghcr.io/arillso/kubernetes:latest
-            arillso/kubernetes:latest
+      - name: Push
+        run: |
+          docker push ghcr.io/arillso/kubernetes:latest
+          docker push arillso/kubernetes:latest
