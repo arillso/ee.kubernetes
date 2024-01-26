@@ -1,0 +1,69 @@
+version: 2
+updates:
+  # This section configures Dependabot to update GitHub Actions workflows.
+  # It checks for updates weekly every Friday at 13:00 UTC.
+  # Any updates will be tagged with a 'chore' prefix in the commit message,
+  # reflecting routine maintenance tasks. Assigned to user 'sbaerlocher'.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+      time: "13:00"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+    assignees:
+      - "sbaerlocher"
+
+  # This section is for Docker dependencies in the 'context' directory.
+  # Dependabot will look for Docker updates weekly on Fridays at 13:00 UTC.
+  # Updates are committed with a 'chore' prefix, indicating non-code changes.
+  # The user 'sbaerlocher' is automatically assigned to these pull requests.
+  - package-ecosystem: "docker"
+    directory: "/context"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+      time: "13:00"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+    assignees:
+      - "sbaerlocher"
+
+  # This section manages updates for Python packages listed in 'requirements.txt'.
+  # Checks are performed weekly on Fridays at 13:00 UTC.
+  # Commit messages will be prefixed with 'chore' to indicate maintenance updates.
+  # Pull requests for updates are assigned to 'sbaerlocher'.
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+      time: "13:00"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+    assignees:
+      - "sbaerlocher"
+
+  # This section manages updates for Python packages listed in 'ansible/requirements.txt'.
+  # Checks are conducted weekly on Fridays at 13:00 UTC.
+  # Commit messages will be prefixed with 'chore', signifying maintenance updates.
+  # Pull requests for updates are assigned to 'sbaerlocher'.
+  - package-ecosystem: "pip"
+    directory: "/.ansible"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+      time: "13:00"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+    assignees:
+      - "sbaerlocher"
