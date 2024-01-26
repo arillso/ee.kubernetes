@@ -1,4 +1,0 @@
-kubernetes-client [platform:fedora]
-openshift-clients [platform:rhel-8]
-wget
-openssl

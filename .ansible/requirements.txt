@@ -1,0 +1,2 @@
+ansible-core==2.15.8 # Transfer this version of ansible-core to execution-environment.yml
+ansible-runner==2.3.1 # Transfer this version of ansible-runner to execution-environment.yml
